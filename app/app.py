@@ -19,7 +19,7 @@ from core_pipeline import (
 )
 
 # ───────────────────── Config ───────────────────── #
-st.set_page_config("Candidate Recommender", "🧑‍💻", layout="wide")
+st.set_page_config("Candidate Recommender", "", layout="wide")
 st.session_state.setdefault("ranked", None)          # list[dict] or None
 st.session_state.setdefault("summaries_done", False)
 st.session_state.setdefault("resumes", None)         # store processed resumes
@@ -52,7 +52,7 @@ def _load_resumes(files) -> List[Dict]:
 
 
 # ───────────────────── UI ───────────────────────── #
-st.title("🧑‍💻 Candidate Recommendation Engine")
+st.title("Candidate Recommendation Engine")
 
 jd = st.text_area("Job description", height=200, placeholder="Paste JD here…")
 files = st.file_uploader(
@@ -62,7 +62,7 @@ files = st.file_uploader(
 )
 top_k = st.number_input("Show top-N", 1, 20, value=DEFAULT_TOP_K)
 
-# ---------- 1️⃣  Rank button ---------- #
+# ----------  Rank button ---------- #
 if st.button("Rank Candidates", disabled=(not jd or not files)):
     with st.spinner("Embedding & ranking…"):
         resumes = _load_resumes(files)
@@ -86,9 +86,9 @@ if st.session_state["ranked"]:
         use_container_width=True,
     )
 
-    # ---------- 2️⃣  Summaries button ---------- #
+    # ---------- Summaries button ---------- #
     if summaries_available() and not st.session_state["summaries_done"]:
-        if st.button("Generate fit summaries 🚀"):
+        if st.button("Generate fit summaries"):
             with st.spinner("Calling Groq…"):
                 for row in st.session_state["ranked"]:
                     # Find the resume text by matching the ID
@@ -98,6 +98,6 @@ if st.session_state["ranked"]:
                         resume_text,
                     )
                 st.session_state["summaries_done"] = True
-                st.rerun()         # refresh table with summaries
+                st.rerun()
 
 st.caption("SproutsAI demo — built by Anish")
