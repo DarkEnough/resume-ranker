@@ -1,1 +1,2 @@
-# Tests for the ranker module 
+def test_placeholder():
+    assert True
