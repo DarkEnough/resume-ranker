@@ -85,6 +85,12 @@ if st.session_state["ranked"]:
         hide_index=True,
         use_container_width=True,
     )
+    st.download_button(
+        label="⬇️  Export results as CSV",
+        data=df.to_csv(index=False),
+        file_name="candidate_ranking.csv",
+        mime="text/csv",
+    )
 
     # ---------- Summaries button ---------- #
     if summaries_available() and not st.session_state["summaries_done"]:
