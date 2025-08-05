@@ -1,4 +1,10 @@
 import pytest
+import sys
+import os
+
+# Add the parent directory to the path so we can import core_pipeline
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from core_pipeline.jd_cleaner import clean_job_description
 
 def test_simple_jd_cleaning():
