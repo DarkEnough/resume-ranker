@@ -16,6 +16,7 @@ from core_pipeline import (
     rank_candidates,
     generate_fit_summary,
     summaries_available,
+    clean_job_description,
 )
 
 # ───────────────────── Config ───────────────────── #
@@ -70,8 +71,11 @@ if st.button("Rank Candidates", disabled=(not jd or not files)):
             st.error("No valid resumes processed."); st.stop()
 
         st.session_state["resumes"] = resumes  # store for later use
+        
+        # Clean the job description to remove irrelevant sections
+        jd_clean = clean_job_description(jd)
         st.session_state["ranked"] = rank_candidates(
-            jd, resumes, top_k=top_k, embedder=Embedder()
+            jd_clean, resumes, top_k=top_k, embedder=Embedder()
         )
         st.session_state["summaries_done"] = False
         st.success("Ranking complete!  Scroll down 🡣")
