@@ -16,14 +16,20 @@ DROP_HEADERS: List[str] = [
     "pursuant to", "ordinance", "regulation", "legal", "compliance",
     "our commitment", "our mission", "we're committed", "we hire",
     "we value", "we believe", "thank you to", "level playing field",
+    "application will not be considered", "you will be asked",
+    "for your application to be considered", "internship is paid",
+    "internships are paid", "internships will be located",
+    "carefully consider a wide range of compensation",
+    "celebrate diversity", "equal opportunity employer",
+    "unique place to work", "netflix is a unique place",
+    "we do not discriminate", "we strive to host", "job is open for no less than"
 ]
 
 # words/phrases that mark sections we want to KEEP (acts as a whitelist)
 KEEP_ANCHORS: List[str] = [
-    "responsibilities", "key responsibilities",
-    "qualifications", "required", "must have",
-    "preferred", "desired", "preferred skills", "preferred qualifications", "you will"
-    "skills", "requirements",
+    "responsibilities", "key responsibilities", "qualifications", "required", "primary duties",
+    "must have", "preferred", "desired", "preferred skills", "preferred qualifications",
+    "you will", "skills", "requirements", "minimum requirements", "minimum skills", "minimum qualifications", "nice to have"
 ]
 
 def clean_job_description(text: str) -> str:
@@ -51,8 +57,8 @@ def clean_job_description(text: str) -> str:
         if any(h in low for h in DROP_HEADERS):
             continue
 
-        # fallback: keep only short paragraphs (<100 words) to be more aggressive
-        if len(p.split()) < 100:
+        # Fallback: keep short to medium relevant paragraphs
+        if 10 < len(p.split()) < 120:
             kept.append(p)
 
     return "\n\n".join(kept) 

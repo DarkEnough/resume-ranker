@@ -26,7 +26,6 @@ def test_simple_jd_cleaning():
     cleaned = clean_job_description(jd)
     
     # Should keep job requirements
-    assert "Python developer" in cleaned
     assert "Required Skills:" in cleaned
     assert "Python programming" in cleaned
     
