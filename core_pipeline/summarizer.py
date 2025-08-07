@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 _GROQ_KEY: Final[str | None] = os.getenv("GROQ_API_KEY")
-_ENABLED: Final[bool] = True  # Always enabled
+_ENABLED: Final[bool] = True
 
 _client = None
 if _GROQ_KEY:  # Only try to use Groq if API key is available
     try:
-        import groq # type: ignore
+        import groq
         _client = groq.Client(api_key=_GROQ_KEY)
     except ImportError:
         print("Warning: groq package not installed. Using fallback summaries.")
@@ -22,7 +22,7 @@ if _GROQ_KEY:  # Only try to use Groq if API key is available
 
 def summaries_available() -> bool:
     """Utility for UI layers to know whether summaries can be generated."""
-    return True  # Always return True to make button visible
+    return True
 
 
 def generate_fit_summary(job_desc: str, resume_text: str, *, k_snippets: int = 5) -> str:

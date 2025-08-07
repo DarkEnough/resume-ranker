@@ -1,6 +1,4 @@
-"""
-Skills analysis and visualization for candidate matching
-"""
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -10,7 +8,6 @@ import streamlit as st
 def match_skill_in_resume(skill: str, resume_text: str) -> float:
     """
     Check if a skill exists in resume text
-    Returns 1.0 if found, 0.0 if not
     """
     skill_lower = skill.lower()
     resume_lower = resume_text.lower()
@@ -19,7 +16,7 @@ def match_skill_in_resume(skill: str, resume_text: str) -> float:
     if skill_lower in resume_lower:
         return 1.0
     
-    # Check for partial matches (for compound skills)
+    # Check for partial matches
     skill_parts = skill_lower.split()
     if len(skill_parts) > 1:
         matches = sum(1 for part in skill_parts if len(part) > 3 and part in resume_lower)

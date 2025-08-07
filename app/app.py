@@ -1,7 +1,3 @@
-"""
-Streamlit v0.3.1  –  summaries only on explicit button press
-"""
-
 from __future__ import annotations
 import tempfile
 from pathlib import Path
@@ -27,9 +23,9 @@ from core_pipeline.skills_analyzer import create_skills_heatmap, create_missing_
 
 # ───────────────────── Config ───────────────────── #
 st.set_page_config("Candidate Recommender", "", layout="wide")
-st.session_state.setdefault("ranked", None)          # list[dict] or None
+st.session_state.setdefault("ranked", None)
 st.session_state.setdefault("summaries_done", False)
-st.session_state.setdefault("resumes", None)         # store processed resumes
+st.session_state.setdefault("resumes", None)
 
 MAX_SIZE_MB = 5
 ALLOWED_EXT = {"pdf", "docx", "txt"}
@@ -207,7 +203,6 @@ if st.session_state["ranked"]:
             st.warning("Unable to extract skills from job description for analysis")
     
     with tab3:
-        # Your existing analytics (similarity distribution, etc.)
         st.subheader("📈 Ranking Analytics")
         
         # Similarity distribution
@@ -234,7 +229,6 @@ if st.session_state["ranked"]:
         # Export functionality
         st.subheader("📋 Export Results")
         
-        # Prepare export data with skills analysis
         export_df = df.copy()
         if 'df_coverage' in locals() and df_coverage is not None and not df_coverage.empty:
             # Add skills coverage to export

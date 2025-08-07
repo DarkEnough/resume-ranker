@@ -37,7 +37,7 @@ def clean_job_description(text: str) -> str:
     Remove paragraphs that are likely irrelevant for skill matching
     (benefits, company blurb, EEO statements, etc.).
     """
-    # normalise to NFC & lower-case for matching
+    # normalise & lower-case for matching
     text_n = unicodedata.normalize("NFC", text)
     paragraphs = re.split(r"\n\s*\n", text_n)          # split on blank lines
 

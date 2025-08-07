@@ -1,4 +1,4 @@
-# core_pipeline/snippetizer.py  (new file)
+
 
 from __future__ import annotations
 import re
@@ -32,7 +32,7 @@ def top_k_snippets(
 
     emb = embedder.encode([job_desc] + sentences)
     jd_vec, sent_vecs = emb[0], emb[1:]
-    sims = cos_sim(jd_vec, sent_vecs).flatten()        # type: ignore
+    sims = cos_sim(jd_vec, sent_vecs).flatten()
 
     top_idx = np.argsort(-sims)[:k]                    # highest first
     return [sentences[i] for i in top_idx]

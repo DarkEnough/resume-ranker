@@ -1,8 +1,3 @@
-"""
-Lightweight wrapper around Sentence-Transformers for lazy, single-load
-model usage across threads / Streamlit session_state.
-"""
-
 from __future__ import annotations
 
 import threading

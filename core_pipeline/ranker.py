@@ -1,6 +1,4 @@
-"""
-Cosine-similarity ranking between a job description and candidate resumes.
-"""
+
 from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
@@ -55,10 +53,6 @@ def _extract_candidate_name(resume_text: str, filename: str) -> str:
 def extract_skills_with_transformer(text: str, max_length: int = None) -> Set[str]:
     """
     Use SkillNER model for skill extraction
-    
-    Args:
-        text: Text to extract skills from
-        max_length: Maximum text length to process (for performance)
     """
     nlp = load_skill_extractor()
     
@@ -96,10 +90,6 @@ def extract_skills_with_transformer(text: str, max_length: int = None) -> Set[st
 def extract_skills_from_text(text: str, focus_sections: bool = True) -> List[str]:
     """
     Generic skill extraction that can be used for both JD and resumes
-    
-    Args:
-        text: Text to extract from
-        focus_sections: Whether to focus on skill-related sections
     """
     skills_set = set()
     
@@ -142,10 +132,6 @@ def extract_skills_from_text(text: str, focus_sections: bool = True) -> List[str
 def extract_skill_focused_sections(text: str, target_skills: List[str]) -> str:
     """
     Extract sections of text that are most relevant to target skills
-    
-    Args:
-        text: Full text (resume or JD)
-        target_skills: Skills to focus on
     """
     if not target_skills:
         return text[:1000]
@@ -270,7 +256,6 @@ def rank_candidates(
         # Weighted combination (skills more important)
         combined_sim = 0.35 * full_sim + 0.65 * skills_sim
         
-        # Optional: Boost based on skill match rate
         # This gives a small bonus for having more of the required skills
         skill_bonus = resume_info["skill_match_rate"] * 0.1  # Max 10% bonus
         final_score = min(combined_sim + skill_bonus, 1.0)  # Cap at 1.0

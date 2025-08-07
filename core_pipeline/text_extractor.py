@@ -24,8 +24,7 @@ def _extract_pdf(path: Path) -> str:
                 all_text.append(text)
         
         full_text = ' '.join(all_text)
-        
-        # Basic cleanup
+
         full_text = re.sub(r'(\w)-\s+(\w)', r'\1\2', full_text)  # Fix hyphenation
         full_text = re.sub(r'\s+', ' ', full_text)  # Normalize spaces
         full_text = re.sub(r'\n+', '\n', full_text)  # Normalize newlines
