@@ -101,8 +101,8 @@ if st.session_state["ranked"]:
         if st.button("Generate fit summaries"):
             with st.spinner("Calling Groq…"):
                 for row in st.session_state["ranked"]:
-                    # Find the resume text by matching the ID
-                    resume_text = next(r["text"] for r in st.session_state["resumes"] if r["id"] == row["id"])
+                    # Find the resume text by matching the filename
+                    resume_text = next(r["text"] for r in st.session_state["resumes"] if r["id"] == row["filename"])
                     row["summary"] = generate_fit_summary(
                         jd,
                         resume_text,

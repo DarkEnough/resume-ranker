@@ -1,5 +1,5 @@
 # Python dependencies for resume-ranker
-pypdf>=3.0.0
+pdfplumber>=3.0.0
 python-docx>=0.8.11
 sentence-transformers>=2.2.0
 numpy>=1.21.0
