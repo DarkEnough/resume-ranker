@@ -12,9 +12,9 @@ import re
 
 @lru_cache(maxsize=1)
 def load_skill_extractor():
-    """Load SkillNER model once and cache it"""
-    tokenizer = AutoTokenizer.from_pretrained("Nucha/Nucha_SkillNER_BERT")
-    model = AutoModelForTokenClassification.from_pretrained("Nucha/Nucha_SkillNER_BERT")
+    """Load LinkedIn Skills Recognition model once and cache it"""
+    tokenizer = AutoTokenizer.from_pretrained("algiraldohe/lm-ner-linkedin-skills-recognition")
+    model = AutoModelForTokenClassification.from_pretrained("algiraldohe/lm-ner-linkedin-skills-recognition")
     return pipeline("ner", model=model, tokenizer=tokenizer, aggregation_strategy="simple")
 
 def _cosine(a: NDArray, b: NDArray) -> float:
@@ -77,8 +77,8 @@ def extract_skills_with_transformer(text: str, max_length: int = None) -> Set[st
             entities = nlp(chunk)
             
             for entity in entities:
-                # Nucha SkillNER model labels skills as 'HSKILL' (hard skills) and 'SSKILL' (soft skills)
-                if entity['entity_group'] in ['HSKILL', 'SSKILL']:
+                # LinkedIn Skills Recognition model labels skills as 'BUS', 'TECHNOLOGY', 'TECHNICAL', 'SOFT'
+                if entity['entity_group'] in ['BUS', 'TECHNOLOGY', 'TECHNICAL', 'SOFT']:
                     skill = entity['word'].strip()
                     # Clean up BERT tokenization artifacts
                     skill = skill.replace('##', '').strip()

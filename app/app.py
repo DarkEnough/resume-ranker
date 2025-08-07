@@ -116,12 +116,18 @@ if st.session_state["ranked"]:
             if st.button("Generate fit summaries"):
                 with st.spinner("Calling Groq…"):
                     for row in st.session_state["ranked"]:
-                        # Find the resume text by matching the filename
-                        resume_text = next(r["text"] for r in st.session_state["resumes"] if r["id"] == row["filename"])
-                        row["summary"] = generate_fit_summary(
-                            jd,
-                            resume_text,
-                        )
+                        try:
+                            # Find the resume text by matching the filename
+                            resume_text = next(r["text"] for r in st.session_state["resumes"] if r["id"] == row["filename"])
+                            if resume_text and len(resume_text.strip()) > 0:
+                                row["summary"] = generate_fit_summary(
+                                    jd,
+                                    resume_text,
+                                )
+                            else:
+                                row["summary"] = "Error: Resume text is empty"
+                        except Exception as e:
+                            row["summary"] = f"Error generating summary: {str(e)}"
                     st.session_state["summaries_done"] = True
                     st.rerun()
     

@@ -61,5 +61,6 @@ def generate_fit_summary(job_desc: str, resume_text: str, *, k_snippets: int = 5
             temperature=0.2,
         )
         return response.choices[0].message.content.strip()
-    except Exception:
-        return
+    except Exception as e:
+        print(f"Error generating summary: {e}")
+        return f"Error generating summary: {str(e)}"
