@@ -121,6 +121,7 @@ final_score = min(combined_similarity + skill_bonus, 1.0)
 ## 🚧 Known Limitations
 
 - Maximum 30 resumes per batch (configurable)
+- PDF extraction may lose some formatting - DOCX files typically perform better for text extraction
 - 5MB file size limit per resume
 - Groq API required for AI summaries (falls back gracefully)
 - Processing time scales linearly with number of resumes
