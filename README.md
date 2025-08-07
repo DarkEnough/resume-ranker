@@ -21,7 +21,6 @@ An intelligent resume screening system that uses advanced NLP and transformer mo
 ## 🚀 Live Demo
 
 **App URL**: https://resume-ranker-e7vxsgq6xsdx9mfe64vaje.streamlit.app
-**Sample Data**: Click "Load Sample Data" button in the app for instant demo
 
 ## 🛠️ Technical Architecture
 
