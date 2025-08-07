@@ -60,8 +60,8 @@ An intelligent resume screening system that uses advanced NLP and transformer mo
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/candidate-recommender.git
-cd candidate-recommender
+git clone https://github.com/yourusername/resume-ranker.git
+cd resume-ranker
 ```
 
 2. Install dependencies:
