@@ -15,7 +15,7 @@ from sentence_transformers import SentenceTransformer
 
 @lru_cache(maxsize=1)
 def _load_model() -> SentenceTransformer:
-    return SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+    return SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
 
 
 class Embedder:
@@ -32,4 +32,3 @@ class Embedder:
                 convert_to_numpy=True,
                 normalize_embeddings=True,
             )
-# Embedding module for resume text 

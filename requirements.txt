@@ -7,4 +7,5 @@ pandas>=1.3.0
 streamlit>=1.28.0
 groq>=0.4.0
 python-dotenv>=1.0.0
-
+transformers>=4.30.0
+torch>=2.0.0
